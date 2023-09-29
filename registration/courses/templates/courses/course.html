@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Registration</title>
+</head>
+<body>
+
+<h1>Available Courses</h1>
+
+<ul>
+    {% for course in courses %}
+        <li>
+            {{ course.c_name }} - Quota: {{ course.quota }}
+            <form method="post" action="{% url 'register_course' course.id %}">
+                {% csrf_token %}
+                <button type="submit">Register</button>
+            </form>
+
+            {% if course.students.all %}
+                <ul>
+                    {% for student in course.students.all %}
+                        <li>
+                            {{ student.name }}
+                            <form method="post" action="{% url 'cancel_registration' course.id student.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Cancel Registration</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "flights/layout.html" %}
+{% block body %}
+<h1>Available Courses</h1>
+<ul>
+    {% for course in courses %}
+        <li><a href="{% url 'flight' flight.id %}">Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }}</a></li>
+    {% empty %}
+        <li>No Available Courses</li>
+    {% endfor %}
+</ul>
+{% endblock %}
