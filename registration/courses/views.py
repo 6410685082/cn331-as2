@@ -5,11 +5,11 @@ from django.urls import reverse
 
 
 # Create your views here.
-def course(request):
+def course_list(request):
     courses = Course.objects.all()
     return render(request, 'courses/course.html', {'courses': courses})
 
-def register_course(request, course_id):
+def register_course(request, course_id,):
     course = Course.objects.get(pk=course_id)
 
     if course.quota > 0:
@@ -19,7 +19,7 @@ def register_course(request, course_id):
         course.quota -= 1
         course.save()
 
-    return HttpResponseRedirect(reverse('course'))
+    return HttpResponseRedirect(reverse('course_list'))
 
 def cancel_registration(request, course_id, student_id):
     course = Course.objects.get(pk=course_id)
@@ -29,4 +29,4 @@ def cancel_registration(request, course_id, student_id):
     course.quota += 1
     course.save()
 
-    return HttpResponseRedirect(reverse('course'))
+    return HttpResponseRedirect(reverse('course_list'))

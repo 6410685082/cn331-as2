@@ -11,7 +11,7 @@
     {% for course in courses %}
         <li>
             {{ course.c_name }} - Quota: {{ course.quota }}
-            <form method="post" action="{% url 'register_course' course.id %}">
+            <form method="post" action="{% url 'register_course' course.id%}">
                 {% csrf_token %}
                 <button type="submit">Register</button>
             </form>
