@@ -11,20 +11,25 @@
     {% for course in courses %}
         <li>
             {{ course.c_name }} - Quota: {{ course.quota }}
-            <form method="post" action="{% url 'register_course' course.id%}">
-                {% csrf_token %}
-                <button type="submit">Register</button>
-            </form>
+            {% if course  not in registrations %}
+                <form method="post" action="{% url 'register_course' course.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Register</button>
+                </form>
+            
+            {% endif %}
 
             {% if course.students.all %}
                 <ul>
                     {% for student in course.students.all %}
                         <li>
-                            {{ student.name }}
-                            <form method="post" action="{% url 'cancel_registration' course.id student.id %}">
-                                {% csrf_token %}
-                                <button type="submit">Cancel Registration</button>
-                            </form>
+                            {{ student.user.username }}
+                            {% if student.user == user %}
+                                <form method="post" action="{% url 'cancel_registration' course.id student.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Cancel Registration</button>
+                                </form>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>

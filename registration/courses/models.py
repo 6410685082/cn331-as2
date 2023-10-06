@@ -9,8 +9,9 @@ class Course(models.Model):
         return f"{self.c_name} ({self.quota})"
 
 class Student(models.Model):
-    name = models.CharField(max_length=32)
+    # name = models.CharField(max_length=32)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course, blank=True, related_name='students')
     def __str__(self):
-        return f"{self.name} : {self.courses}"
+        return f"{self.user} : {self.courses}"
     
