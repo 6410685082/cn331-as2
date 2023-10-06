@@ -9,7 +9,7 @@ def course_list(request):
     courses = Course.objects.all()
     return render(request, 'courses/course.html', {'courses': courses})
 
-def register_course(request, course_id,):
+def register_course(request, course_id):
     course = Course.objects.get(pk=course_id)
 
     if course.quota > 0:

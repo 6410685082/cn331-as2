@@ -10,7 +10,7 @@ class Course(models.Model):
 
 class Student(models.Model):
     name = models.CharField(max_length=32)
-    courses = models.ManyToManyField(Course, blank=True)
+    courses = models.ManyToManyField(Course, blank=True, related_name='students')
     def __str__(self):
         return f"{self.name} : {self.courses}"
     
