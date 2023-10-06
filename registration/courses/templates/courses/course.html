@@ -11,12 +11,12 @@
     {% for course in courses %}
         <li>
             {{ course.c_name }} - Quota: {{ course.quota }}
-            {% if course  not in registrations %}
+            {{ registrations }}
+            {% if course not in registrations %}
                 <form method="post" action="{% url 'register_course' course.id %}">
                     {% csrf_token %}
                     <button type="submit">Register</button>
                 </form>
-            
             {% endif %}
 
             {% if course.students.all %}

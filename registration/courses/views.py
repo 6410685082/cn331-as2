@@ -7,7 +7,7 @@ def course_list(request):
     courses = Course.objects.all()
     user = request.user
     registrations = Student.objects.filter(user=user, courses__in=courses)
-    registered_courses = set(registration.courses.all().first() for registration in registrations)
+    registered_courses = registrations[0].courses.all() if len(registrations) != 0 else []
 
     return render(request, 'courses/course.html', {'courses': courses, 'registrations': registered_courses, 'user': user})
 
