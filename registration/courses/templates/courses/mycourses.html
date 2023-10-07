@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Registered Courses</title>
+</head>
+<body>
+
+<h1>My Registered Courses</h1>
+
+{% if registered_courses %}
+    <ul>
+        {% for course in registered_courses %}
+            <li>{{ course.name }}  [{{ course.num }}]</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You are not registered for any courses.</p>
+{% endif %}
+
+<a href="{% url 'index' %}">Return Home</a>
+</body>
+</html>

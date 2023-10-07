@@ -35,3 +35,13 @@ def cancel_registration(request, course_id, student_id):
         course.save()
 
     return redirect('course_list')
+
+@login_required
+def my_courses(request):
+    user = request.user
+    student = Student.objects.get(user=user)
+    registered_courses = student.courses.all()
+    
+    return render(request, 'courses/mycourses.html', {'registered_courses': registered_courses})
+
+        
