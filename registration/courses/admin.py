@@ -8,7 +8,7 @@ from .models import Course, Student
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     # inlines = [StudentInline]
-    list_display = ['c_name', 'quota']
+    list_display = ['name','num', 'sem', 'year', 'quota', 'open']
     
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
