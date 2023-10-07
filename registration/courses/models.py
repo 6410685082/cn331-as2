@@ -10,7 +10,7 @@ class Course(models.Model):
     quota = models.IntegerField(default=40)
     open = models.BooleanField(default=True)
     def __str__(self):
-        return f"{self.name} ({self.num}) : ({self.quota}) ({self.sem})/({self.year})"
+        return f"{self.name} ({self.num}) : {self.quota} - {self.sem}/{self.year}"
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

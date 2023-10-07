@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 from .models import Course, Student
 
@@ -34,7 +35,7 @@ def cancel_registration(request, course_id, student_id):
         course.quota += 1
         course.save()
 
-    return redirect('course_list')
+    return redirect('my_courses')
 
 @login_required
 def my_courses(request):
@@ -43,5 +44,11 @@ def my_courses(request):
     registered_courses = student.courses.all()
     
     return render(request, 'courses/mycourses.html', {'registered_courses': registered_courses})
+
+@staff_member_required
+def admin_check(request):
+    all_students = Student.objects.all()
+    
+    return render(request, 'courses/admin_check.html', {'all_students': all_students})
 
         

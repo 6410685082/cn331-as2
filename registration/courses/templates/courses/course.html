@@ -12,27 +12,15 @@
         {% if course.open %}
             <li>
                 {{ course.name }} [{{ course.num }}] : {{ course.sem }}/{{ course.year }} - Quota: {{ course.quota }}
-                {% if course not in registrations %}
+                {% if course not in registrations and  course.quota != 0%}
                     <form method="post" action="{% url 'register_course' course.id %}">
                         {% csrf_token %}
                         <button type="submit">Register</button>
                     </form>
-                {% endif %}
-
-                {% if course.students.all %}
-                    <ul>
-                        {% for student in course.students.all %}
-                            <li>
-                                {{ student.user.username }}
-                                {% if student.user == user %}
-                                    <form method="post" action="{% url 'cancel_registration' course.id student.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit">Cancel Registration</button>
-                                    </form>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
+                {% elif course not in registrations and  course.quota == 0 %}
+                    <p>This course is already full.</p>
+                {% else %}
+                    <p>You are already registered for this course.</p>
                 {% endif %}
             </li>
         {% endif %}
