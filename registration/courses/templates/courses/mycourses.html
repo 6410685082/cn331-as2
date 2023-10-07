@@ -2,37 +2,40 @@
 <html>
 <head>
     <title>My Registered Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course.css' %}">
 </head>
 <body>
 
 <h1>My Registered Courses</h1>
 
-{% if registered_courses %}
-    <ul>
-        {% for course in registered_courses %}
-            <li>{{ course.name }}  [{{ course.num }}]</li>
-            {% if course.students.all %}
-                    <ul>
+<div class="login-container">
+    {% if registered_courses %}
+        <ul>
+            {% for course in registered_courses %}
+                <h3>
+                    {{ course.name }} [{{ course.num }}]
+                    
                         {% for student in course.students.all %}
-                            <h3>
-                                {% comment %} {{ student.user.username }} {% endcomment %}
-                                {% if student.user == user %}
-                                    <form method="post" action="{% url 'cancel_registration' course.id student.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit">Cancel Registration</button>
-                                    </form>
-                                {% endif %}
-                                </h3>
+                            {% if student.user == user %}
+                                
+                                <a href="{% url 'cancel_registration' course.id student.id %}" class="cancel-button">
+                                    {% csrf_token %}
+                                    Cancel Registration
+                                </a>
+                                
+                            {% endif %}
                         {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>You are not registered for any courses.</p>
-{% endif %}
+                    
+                </h3>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not registered for any courses.</p>
+    {% endif %}
+</div>
 
-<a href="{% url 'index' %}">Return Home</a>
+<a href="{% url 'index' %}" class="return-button">Return Home</a>
+
 </body>
 </html>

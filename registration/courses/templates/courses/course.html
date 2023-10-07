@@ -2,32 +2,37 @@
 <html>
 <head>
     <title>Course Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course.css' %}">
 </head>
 <body>
 
 <h1>Available Courses</h1>
 
-<ul>
-    {% for course in courses %}
-        {% if course.open %}
-            <li>
-                {{ course.name }} [{{ course.num }}] : {{ course.sem }}/{{ course.year }} - Quota: {{ course.quota }}
-                {% if course not in registrations and  course.quota != 0%}
-                    <form method="post" action="{% url 'register_course' course.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Register</button>
-                    </form>
-                {% elif course not in registrations and  course.quota == 0 %}
-                    <p>This course is already full.</p>
-                {% else %}
-                    <p>You are already registered for this course.</p>
-                {% endif %}
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+<div class="login-container">
+    <ul>
+        {% for course in courses %}
+            {% if course.open %}
+                <h3>
+                    {{ course.name }} [{{ course.num }}] : {{ course.sem }}/{{ course.year }} - Quota: {{ course.quota }}
+                    {% if course not in registrations and course.quota != 0 %}
+                        <a href="{% url 'register_course' course.id %}" class="register-button">
+                            {% csrf_token %}
+                            Register
+                        </a>
+                    {% else %}
+                        <a class="cannot_r-button">
+                            {% csrf_token %}
+                            Register
+                        </a>
+                    {% endif %}
+                </h3>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
 
-<a href="{% url 'index' %}">Return Home</a>
+<a href="{% url 'index' %}" class="return-button">Return Home</a>
 
 </body>
 </html>

@@ -1,14 +1,21 @@
 {% extends 'users/layout.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock %}
+
 {% block body %}
+<div class="login-container">
+    <h1>Welcome {{ request.user.first_name }}</h1>
+    <ul>
+        <h2>Username: {{ request.user.username }}</h2>
+    </ul>
+    
+    <h3><a href="{% url 'course_list' %}" class="enrollment-button">Enrollment</a></h3>
+    <h3><a href="{% url 'my_courses' %}" class="courses-button">My Courses</a></h3>
+    <h3><a href="{% url 'logout' %}" class="logout-button">Logout</a></h3>
 
-<h1>Welcome, {{ request.user.first_name }}</h1>
-<ul>
-    <li>Username: {{ request.user.username }}</li>
-    <li>Email: {{ request.user.email }}</li>
-</ul>
-
-<a href="{% url 'logout' %}">Log Out</a>
-<a href="{% url 'course_list' %}">Enrollment</a>
-<a href="{% url 'my_courses' %}">My Courses</a>
+</div>
 
 {% endblock %}

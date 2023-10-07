@@ -1,0 +1,60 @@
+body {
+    background-image: url('https://www.thesprucepets.com/thmb/AyzHgPQM_X8OKhXEd8XTVIa-UT0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+    background-color: rgba(231, 226, 220, 0.925);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.enrollment-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #45a049;
+}
+
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e92e28;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #ad0d0d;
+}
+
+.courses-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3c49bd;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.courses-button:hover {
+    background-color: #1851a7;
+}

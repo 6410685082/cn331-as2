@@ -1,15 +1,25 @@
-{% extends 'users/layout.html' %}
-{% block body %}
-
-{% if message %}
-    <div>{{ message }}</div>
-{% endif %}
-
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
-</form>
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form action="{% url 'login' %}" method="post" class="login-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username" style="font-family: 'Courier New', Courier, monospace;">Username:</label>
+                    <input type="text" name="username" id="username" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="font-family: 'Courier New', Courier, monospace;">Password:</label>
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

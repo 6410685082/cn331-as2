@@ -2,24 +2,28 @@
 <html>
 <head>
     <title>Admin View Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course.css' %}">
 </head>
 <body>
 
 <h1>Admin View Courses</h1>
+<div class="data-container">
+    {% for student in all_students %}
+        <h3><p>{{ student.user.username }}</p></h3>
+        {% if student.courses.all %}
+            <ul>
+                {% for course in student.courses.all %}
+                    <p>   >> {{ course.name }}  [{{ course.num }}]</p>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ student.user.username }} is not registered for any courses.</p>
+        {% endif %}
+    {% endfor %}
+</div>
 
-{% for student in all_students %}
-    <h3><li>{{ student.user.username }}</li></h3>
-    {% if student.courses.all %}
-        <ul>
-            {% for course in student.courses.all %}
-                <li>{{ course.name }}  [{{ course.num }}]</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>{{ student.user.username }} is not registered for any courses.</p>
-    {% endif %}
-{% endfor %}
-<a href="{% url 'index' %}">Return Home</a>
+<a href="{% url 'index' %}" class="return-button">Return Home</a>
 
 </body>
 </html>
