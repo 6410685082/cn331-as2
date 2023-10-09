@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8&b22e5=yn$phu4&g$!n%0a3vlsf1@uc40mtes7v4e0f2$evb3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['https://*']
+CSRF_TRUSTED_ORIGINS = ['https://kittsakS.pythonanywhere.com']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['kittsakS.pythonanywhere.com']
 
 
 # Application definition
@@ -125,3 +125,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'kittsakS$default',
+        'USER': 'kittsakS',
+        'PASSWORD': 'cn331166',
+        'HOST': 'kittsakS.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            'sql_mode': 'traditional'
+        }
+    }
+}
+
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
