@@ -22,6 +22,9 @@ __This is part of CN331 assignment 2__
 
 ![Mycourses page](img/myc.png)
 
+- Check student's course (Admin Only!) page
+![Check student's course (Admin Only!)](img/admin.png)
+
 ## Clip
 __>>>[Introduce My Website Clip]<<<__
 
