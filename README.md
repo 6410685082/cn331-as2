@@ -8,5 +8,12 @@ __This is part of CN331 assignment 4__
 ## Test command
 ```coverage run --source='.' manage.py test ```
 
-![Login page](img/test.png)
+![All test](img/test.png)
 
+__courses test__
+
+![Courses test](img/courses_test.png)
+
+__users test__
+
+![Users test](img/users_test.png)
